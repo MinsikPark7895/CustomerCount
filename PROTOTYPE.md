@@ -32,23 +32,32 @@ CustomerCount/
 
 ## 빠른 시작
 
-### 1. 설치
+### 방법 1: Docker (권장)
+
+```bash
+# Docker Compose로 실행
+docker-compose up -d
+
+# 로그 확인
+docker-compose logs -f api
+```
+
+서버 접속: http://localhost:5000/docs
+
+**자세한 내용**: [DOCKER.md](DOCKER.md)
+
+### 방법 2: 직접 실행
 
 ```bash
 # 의존성 설치
 pip install -r requirements.txt
-```
 
-### 2. 실행
-
-```bash
+# 서버 실행
 cd backend
 python main.py
 ```
 
-### 3. 테스트
-
-브라우저에서 http://localhost:5000/docs 접속하여 API 테스트
+서버 접속: http://localhost:5000/docs
 
 ## 현재 구현 상태
 

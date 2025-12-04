@@ -1,0 +1,63 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 문서
+*.md
+docs/
+!backend/README_PROTOTYPE.md
+
+# 테스트
+tests/
+*.test.py
+.pytest_cache/
+.coverage
+
+# 데이터
+data/
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+
+# 로그
+*.log
+logs/
+
+# 환경 변수 (필요한 것만 COPY)
+.env.local
+.env.*.local
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# 기타
+tmp/
+temp/
+*.tmp
