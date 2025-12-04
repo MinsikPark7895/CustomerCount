@@ -211,7 +211,33 @@ async def upload(file: UploadFile = File(...)):
 
 > **참고**: 자동 폴링/SSE/WebSocket 불필요. 사용자가 필요시 새로고침 버튼으로 최신 데이터 조회.
 
-## 8. 설치 방법 (매장 1곳 기준)
+## 8. 개발 및 배포
+
+### Docker 사용 (권장)
+
+**빠른 시작:**
+```bash
+# 서버 시작
+docker-compose up -d
+
+# 또는 Makefile 사용
+make up
+```
+
+서버 접속: http://localhost:5000/docs
+
+**상세 가이드**: [DOCKER.md](DOCKER.md) 참조
+
+### Orange Pi RV2 배포
+
+```bash
+# Orange Pi에서 직접 실행
+docker-compose up -d --build
+```
+
+---
+
+## 9. 설치 방법 (매장 1곳 기준)
 
 1. 천장/벽면에 OV2640 카메라 + ESP32 고정
 2. LAN 포트 근처에 PoE 인젝터 설치
@@ -220,7 +246,7 @@ async def upload(file: UploadFile = File(...)):
 5. 앱에서 매장 등록 → 카메라 ID 매핑
 6. 테스트 촬영 → 실시간 count 확인
 
-## 9. 테스트 절차
+## 10. 테스트 절차
 
 1. 카메라 프레임 정상 수신 확인
 2. YOLO head detector 정확도 테스팅
@@ -228,7 +254,7 @@ async def upload(file: UploadFile = File(...)):
 4. 좌석수 입력 → 혼잡도 자동 계산
 5. 앱 UI가 5초마다 갱신되는지 확인
 
-## 10. 장비 구성의 장점
+## 11. 장비 구성의 장점
 
 - **간편한 설치**: 전원/데이터 모두 LAN 한 가닥 (매장 설치 쉬움)
 - **높은 정확도**: OV2640은 초저가 센서지만 head detection 95%까지 가능

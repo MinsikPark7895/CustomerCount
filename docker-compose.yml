@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # FastAPI + YOLO 서버
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: customercount-api
+    ports:
+      - "5000:5000"
+    volumes:
+      # 코드 마운트 (개발용 - 프로덕션에서는 제거)
+      - ./backend:/app/backend
+      # YOLO 모델 캐시
+      - yolo_models:/root/.cache/ultralytics
+      # 업로드된 이미지 저장소 (선택)
+      - ./data/uploads:/app/uploads
+    environment:
+      - PYTHONUNBUFFERED=1
+      - YOLO_MODEL=yolov8n.pt
+      - API_PORT=5000
+    restart: unless-stopped
+    networks:
+      - customercount-network
+    # Orange Pi에서 실행 시 리소스 제한 (선택)
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '2'
+    #       memory: 2G
+
+  # PostgreSQL 데이터베이스 (선택사항)
+  # db:
+  #   image: postgres:15-alpine
+  #   container_name: customercount-db
+  #   environment:
+  #     - POSTGRES_USER=customercount
+  #     - POSTGRES_PASSWORD=changeme
+  #     - POSTGRES_DB=customercount
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
+  #   networks:
+  #     - customercount-network
+
+volumes:
+  yolo_models:
+  # postgres_data:
+
+networks:
+  customercount-network:
+    driver: bridge
