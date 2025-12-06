@@ -15,6 +15,19 @@ from datetime import datetime
 from typing import Optional
 import os
 from pathlib import Path
+import torch
+
+# PyTorch 2.6+ 호환성: torch.load의 weights_only 기본값을 False로 패치
+# YOLO 모델은 신뢰할 수 있는 소스이므로 weights_only=False 사용
+_original_torch_load = torch.load
+
+def _patched_torch_load(*args, **kwargs):
+    """torch.load를 패치하여 weights_only=False를 기본값으로 설정"""
+    if 'weights_only' not in kwargs:
+        kwargs['weights_only'] = False
+    return _original_torch_load(*args, **kwargs)
+
+torch.load = _patched_torch_load
 
 # FastAPI 앱 초기화
 app = FastAPI(
